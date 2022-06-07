@@ -1,0 +1,4 @@
+1	1@1	1	1	null	null
+2	2@2	2	2	null	null
+1	tmd@induk.ac.kr	33	comso	null	null
+2	qja@induk.ac.kr	44	tmd	null	null
