@@ -1,7 +1,8 @@
 package iducs.java.pim201912047.pims.domain;
+// 나중에 빨간거 뜨면 알트 엔터로 패키지 추가 시켜주면 오류 안남
 
-
-public class Member { // 회원 정보 전송(transfer) 객체 : Data Transfer Object (읽기/쓰기)
+public class Member { // 회원 정보 전송(transfer) 객체( : Data Transfer Object (읽기/쓰기)
+    // 즉 저장 하기위해 전송하는 놈임
     // Valuable Object (읽기)
     private long id; // 식별 번호
     private String email; // 로그인 아이디 역할 수행
