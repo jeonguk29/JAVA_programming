@@ -1,0 +1,2 @@
+1	admin@induk.ac.kr	1234	woogir	01012341234	goro
+
