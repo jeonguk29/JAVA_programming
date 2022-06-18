@@ -1,0 +1,4 @@
+1	admin@induk.ac.kr	1234	woogir	01012341234	goro
+85	ㅂㅈㄷㄱ	qwer	qwer	01011111111	qwer
+46	rerer	rerer	rerer	01022222222	qweqwe
+84	qwe	qwe	qwe	01022221111	qwe
