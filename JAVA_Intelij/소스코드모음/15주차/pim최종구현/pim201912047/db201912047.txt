@@ -1,0 +1,6 @@
+38	induk@ac.kr	1234	바바바	01012341234	goro
+46	d@induk.ac.kr	1234	라라라라	01099999999	goro
+41	c@induk.ac.kr	1234	다다다	01011111111	goro
+26	b@induk.ac.kr	1234	나나난	01011112222	goro
+1	admin@induk.ac.kr	1234	김김	01012341234	goro
+81	a@induk.ac.kr	1234	가가가	01012341234	goro
