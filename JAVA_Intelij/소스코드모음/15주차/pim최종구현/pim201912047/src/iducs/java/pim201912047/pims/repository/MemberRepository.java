@@ -19,6 +19,8 @@ public interface MemberRepository<T> {
 
     List<T> readListByPerPage(int page, int perPage); // 페이지네이션
 
+    long id_add_List();
+
     // 즉 위와 같은 메소들을 만들어서 써라 즉 크리에이스 메소드에 맴버 객체를 넘기면
     // 반환 값으로 int형 온다고 생각 하면 됨
 }

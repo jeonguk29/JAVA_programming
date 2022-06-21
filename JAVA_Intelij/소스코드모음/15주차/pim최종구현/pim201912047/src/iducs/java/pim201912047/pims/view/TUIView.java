@@ -18,7 +18,7 @@ public class TUIView { //TUI : Text User Interface, CUI(Character UI)
                 System.out.print("5. 로그아웃\t");
                 System.out.print("7. 목록조회\t");
                 System.out.print("8. 번호조회\t");
-                System.out.print("9. 회원내림차순정렬 화면출력 \t");
+                System.out.print("9. 회원정렬 화면출력 \t");
                 System.out.print("10. 페이지 출력 \t");
             }
         }

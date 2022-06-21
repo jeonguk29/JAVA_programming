@@ -70,6 +70,17 @@ public class PimController {
 
             }
 
+            //BufferedReader br = new BufferedReader(new FileReader(fileName));
+            //파일을 한 문장씩 읽어온다.
+            //String str = br.readLine();
+                /*
+                File file = new File(fileName);
+                FileInputStream fis = new FileInputStream(file);
+                byte[] data = new byte[(int) file.length()];
+                fis.read(data);
+                fis.close();
+                */
+
             loop:if(menu == 1)
             {
                 String same ="";
@@ -81,16 +92,6 @@ public class PimController {
                 System.out.println("이메일을 입력해주세요");
                 same = sc.next();
 
-                //BufferedReader br = new BufferedReader(new FileReader(fileName));
-                //파일을 한 문장씩 읽어온다.
-                //String str = br.readLine();
-                /*
-                File file = new File(fileName);
-                FileInputStream fis = new FileInputStream(file);
-                byte[] data = new byte[(int) file.length()];
-                fis.read(data);
-                fis.close();
-                */
                 String text = new String(Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8);
 
                 //String str = new String(data, "UTF-8");
@@ -107,9 +108,10 @@ public class PimController {
                     {
 
                         // id 자동증가
-                        double randomValue = Math.random();
-                        int id_num = (int)(randomValue * 100) + 1;
-                        member.setId(id_num); // Long 값을 입력받음 자동증가 // 자동 아이디값 증가
+                        //double randomValue = Math.random();
+                        //int id_num = (int)(randomValue * 100) + 1;
+                        memberService.id_add(); // 현제 리스트 들어간거 다 출력
+                        member.setId(memberService.id_add() + 1); // Long 값을 입력받음 자동증가 // 자동 아이디값 증가
                         member.setEmail(same); // String 값을 입력 받아 넣음
                         System.out.println("비밀번호를 입력해주세요");
                         member.setPw(sc.next());
@@ -155,7 +157,7 @@ public class PimController {
             //루트일때 종료, 정보조희, 정보수정, 로그아웃, 목록조희 가능
             //사용자 정보조희, 정보수정, 로그아웃, 회원탈퇴 가능
 
-            if(menu == 3) {
+            if(menu == 3 && isLogin == true) {
                 msg = "정보조회";
                 // printOne : 하나의 member 정보 출력
                 memberView.printOne(memberService.getMember(
@@ -163,7 +165,7 @@ public class PimController {
                 memberView.printMsg(msg + "를 성공했습니다.");
 
             }
-            if(menu == 4) {
+            if(menu == 4 && isLogin == true) {
                 msg = "정보수정";
                 member = new Member();
                 member.setId(sessionMember.getId()); // id 변경 불가(같은 값으로 설정)
@@ -185,23 +187,23 @@ public class PimController {
 
             }
 
-            if(menu == 5) {
+            if(menu == 5 && isLogin == true) {
                 msg = "로그아웃";
                 memberService.saveFile();
                 memberService.readFile();
-                if(session.get("member") != null) {
-                    session.remove("member");
+                if(session.get("member") != null) {  // 세션이 비어있지 않다면
+                    session.remove("member");  //세션에 저장 된걸 지움
                 }
                 memberView.printMsg(msg + "를 성공했습니다.");
 
             }
 
-            loop2:if(menu == 6 && isRoot == false ) {
+            loop2:if(menu == 6 && isRoot == false  && isLogin == true) {
                 msg = "회원탈퇴";
 
-                if(memberService.deleteMember(sessionMember) == 0) {
-                    memberService.del_saveFile();
-                    memberView.printOne(member);
+                if(memberService.deleteMember(sessionMember) == 0) {// 로그인 할때 가져온 세션멤버를 리스트에서 지우고
+                    memberService.del_saveFile(); //파일에서 건너띄고 다시 작성해서 파일에서도 탈퇴 시킴
+                    memberView.printOne(member); 
                     memberView.printMsg(msg + "를 성공했습니다.");
                     System.exit(0);
                 }
@@ -232,7 +234,7 @@ public class PimController {
                 String p ="";
                 System.out.println("검색할 휴대폰 번호 전체 자리 혹은 끝 4자리를 입력해주세요.");
                 p=sc.next();
-                memberService.findMemberByPhone(p); // 현제 리스트 들어간거 다 출력
+                memberService.findMemberByPhone(p); // 폰번호 문자열 보내서 리스트 안에있는거 하나하나 비교하면서 같은게 있으면 그 객체값 출력
                 memberView.printMsg(msg + "를 성공했습니다.");
 
             }
@@ -257,8 +259,9 @@ public class PimController {
                 Scanner sc2 = new Scanner(System.in);
                 int page = 0;
                 int per_page = 0;
-                System.out.println("지정할 페이지, 페이지당 갯수");
+                System.out.println("지정할 페이지");
                 page = sc.nextInt();
+                System.out.println("페이지당 갯수");
                 per_page = sc.nextInt();
                 memberView.printList(memberService.paginateByPerPage(page,per_page));
 

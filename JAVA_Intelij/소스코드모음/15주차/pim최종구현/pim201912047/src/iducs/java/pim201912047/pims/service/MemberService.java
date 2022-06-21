@@ -26,6 +26,7 @@ public interface MemberService<T> {
     // 로그아웃 또는 종료
     void applyUpdate(); // saveFile +  readFile : 등록, 수정, 삭제도 호출 가능
 
+    long id_add();
     List<T> paginateByPerPage(int pageNo, int perPage);// 페이지네이션
 
 }

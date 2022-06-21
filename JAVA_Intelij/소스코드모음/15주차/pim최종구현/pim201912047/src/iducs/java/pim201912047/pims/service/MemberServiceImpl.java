@@ -68,6 +68,11 @@ public class MemberServiceImpl<T> implements MemberService<T> {
         memberRepository.lowMemberList(order);
     }
 
+    public long id_add()
+    {
+        return memberRepository.id_add_List();
+    }
+
     @Override
     public void findMemberByPhone(String p)
     {
@@ -109,7 +114,7 @@ public class MemberServiceImpl<T> implements MemberService<T> {
         File file = new File(memberdb);
         try  {
             MemberFileWriter<Member> mfw = new MemberFileWriter<>(file);
-            mfw.delsaveMember((List<Member>) memberRepository.readList());
+            mfw.delsaveMember((List<Member>) memberRepository.readList());   // 현제 리스트 값을 가져와서 멤버형 리스트로 형 변환후
         } catch(IOException e) { // 예외를 직접 처리, unchecked exception
             e.printStackTrace();
         }
